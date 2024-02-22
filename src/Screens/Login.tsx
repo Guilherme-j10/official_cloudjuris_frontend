@@ -11,8 +11,8 @@ export const Login: React.FC = () => {
       email: '',
       password: ''
     }
-  })
-  
+  });
+
   return (
     <div className="w-full flex flex-col justify-center items-center min-h-[100vh]">
       <Card className="w-[350px]">

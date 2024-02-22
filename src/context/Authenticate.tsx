@@ -13,6 +13,8 @@ export const AuthenticateProvider: React.FC <{ children: React.ReactNode }> =  (
     const fakeEmail = 'guilherme@cloudjuris';
     const fakePassword = '1234';
 
+    await new Promise(resolve => setTimeout(() => resolve(true), 1000));
+
     if (email === fakeEmail && password === fakePassword) {
       localStorage.setItem(localStorageKey, 'true');
       setIsLogedIn(true);
