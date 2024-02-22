@@ -3,7 +3,8 @@ export type AuthenticateContextType = {
   handleLogout: () => Promise<void>,
   handleLogin: (email: string, password: string) => Promise<boolean>,
   authenticateUserData: any,
-  isValidatingAccess: boolean
+  isValidatingAccess: boolean,
+  loginIsPending: boolean
 }
 
 export type LoginFormType = {

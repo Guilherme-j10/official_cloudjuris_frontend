@@ -8,20 +8,24 @@ export const AuthenticateProvider: React.FC <{ children: React.ReactNode }> =  (
   const localStorageKey = 'userStateAccessToken';
   const [ isLogedIn, setIsLogedIn ] = useState(false);
   const [ isVlidatingAccess, setIsVlidatingAccess ] = useState(true);
+  const [ LoginRequestLogin, setLoginRequestLogin ] = useState(false);
 
   const handleLogin = async (email: string, password: string): Promise<boolean> => {
     const fakeEmail = 'guilherme@cloudjuris';
     const fakePassword = '1234';
 
+    setLoginRequestLogin(true);
     await new Promise(resolve => setTimeout(() => resolve(true), 1000));
 
     if (email === fakeEmail && password === fakePassword) {
       localStorage.setItem(localStorageKey, 'true');
       setIsLogedIn(true);
+      setLoginRequestLogin(false);
 
       return true;
     }
 
+    setLoginRequestLogin(false);
     toast.error('Senha ou e-mail incorretos!');
     return false;
   }
@@ -54,6 +58,7 @@ export const AuthenticateProvider: React.FC <{ children: React.ReactNode }> =  (
   return (
     <AuthenticateContext.Provider value={{
       isLogged: isLogedIn,
+      loginIsPending: LoginRequestLogin,
       authenticateUserData: {},
       handleLogin,
       handleLogout,
